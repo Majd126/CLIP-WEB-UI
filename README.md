@@ -2,6 +2,8 @@
 
 This is a web application that allows you to search through a folder of images using OpenAI's CLIP model. You can search using text queries or by uploading an image.
 
+<img width="340" alt="Image" src="https://github.com/user-attachments/assets/d114b5f6-9dde-46f5-98f0-caf19c4f796e" />
+
 ## Setup
 
 ### automatic setup
