@@ -11,7 +11,7 @@ This is a web application that allows you to search through a folder of images u
    git clone https://github.com/Majd126/CLIP-WEB-UI.git
 2. run 'run first time only.bat'
 
-### maunal setup
+### manual setup
 1. Clone this repository:
    ```bash
    git clone https://github.com/Majd126/CLIP-WEB-UI.git
