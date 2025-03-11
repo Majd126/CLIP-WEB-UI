@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIP Image Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>CLIP Image Search</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="query" placeholder="Enter your search query">
+        <br><br>
+        <label for="image">Or upload an image:</label>
+        <input type="file" name="image" accept="image/*">
+        <br><br>
+        <label for="similarity_threshold">Similarity Threshold:</label>
+        <input type="range" id="similarity_threshold" name="similarity_threshold" min="0" max="1" step="0.01" value="{{ similarity_threshold }}">
+        <span id="threshold_value">{{ similarity_threshold }}</span>
+        <br><br>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h2>Search Results (Threshold: {{ similarity_threshold }})</h2>
+        <div class="image-grid">
+            {% for image_path, similarity in results %}
+                <div class="image-item">
+                    <a href="{{ url_for('static', filename=image_path) }}" target="_blank">
+                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ image_path }}">
+                    </a>
+                    <p>Similarity: {{ similarity | round(4) }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script>
+        // Update the displayed threshold value as the slider changes
+        const slider = document.getElementById("similarity_threshold");
+        const thresholdValue = document.getElementById("threshold_value");
+        slider.oninput = function() {
+            thresholdValue.textContent = this.value;
+        };
+    </script>
+</body>
+</html>
